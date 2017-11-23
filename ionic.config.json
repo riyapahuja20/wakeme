@@ -1,0 +1,8 @@
+{
+  "name": "WakeMe",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
