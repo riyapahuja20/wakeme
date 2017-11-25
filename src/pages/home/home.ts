@@ -24,13 +24,33 @@ export class HomePage {
   }
 
   addMarker(){
+
+    console.log("outMarker");
+    this.geolocation.getCurrentPosition().then((position) => {
  
+   
+    let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+ 
+ console.log("Marker");
   let marker = new google.maps.Marker({
     map: this.map,
     animation: google.maps.Animation.DROP,
-    position: this.map.getCenter()
+    position: latLng
   });
  
+ }, (err) =>{
+    console.log(err);
+  });
+
+    let watch = this.geolocation.watchPosition();
+    watch.subscribe((position) => {
+        console.log(position.coords.longitude + ' ' + position.coords.latitude);
+    // data can be a set of coordinates, or an error (if an error occurred).
+    // data.coords.latitude
+    // data.coords.longitude
+
+    
+    });
   // this.getAlarm();
   // let content = "<h4>Information!</h4>";          
  
@@ -52,9 +72,10 @@ public getAlarm() {
  
     //let latLng = new google.maps.LatLng(-34.9290, 138.6010);
 
-    this.geolocation.getCurrentPosition().then((position) => {
+
+    let latLng = this.geolocation.getCurrentPosition().then((position) => {
  
- 	console.log(position);
+   	console.log(position);
  	
     let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
  
@@ -67,7 +88,6 @@ public getAlarm() {
  
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     //this.getcountry(position);
- 
   }, (err) =>{
   	console.log(err);
   });

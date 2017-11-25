@@ -55606,10 +55606,25 @@ var HomePage = (function () {
         this.loadMap();
     };
     HomePage.prototype.addMarker = function () {
-        var marker = new google.maps.Marker({
-            map: this.map,
-            animation: google.maps.Animation.DROP,
-            position: this.map.getCenter()
+        var _this = this;
+        console.log("outMarker");
+        this.geolocation.getCurrentPosition().then(function (position) {
+            var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            console.log("Marker");
+            var marker = new google.maps.Marker({
+                map: _this.map,
+                animation: google.maps.Animation.DROP,
+                position: latLng
+            });
+        }, function (err) {
+            console.log(err);
+        });
+        var watch = this.geolocation.watchPosition();
+        watch.subscribe(function (position) {
+            console.log(position.coords.longitude + ' ' + position.coords.latitude);
+            // data can be a set of coordinates, or an error (if an error occurred).
+            // data.coords.latitude
+            // data.coords.longitude
         });
         // this.getAlarm();
         // let content = "<h4>Information!</h4>";          
@@ -55626,7 +55641,7 @@ var HomePage = (function () {
     HomePage.prototype.loadMap = function () {
         //let latLng = new google.maps.LatLng(-34.9290, 138.6010);
         var _this = this;
-        this.geolocation.getCurrentPosition().then(function (position) {
+        var latLng = this.geolocation.getCurrentPosition().then(function (position) {
             console.log(position);
             var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             var mapOptions = {
