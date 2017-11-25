@@ -15,7 +15,7 @@ export class HomePage {
 	@ViewChild('map') mapElement: ElementRef;
   	map: any;
 
-  constructor(public navCtrl: NavController, public geolocation: Geolocation,public geocoder: NativeGeocoder, public toaster: ToastController) {
+  constructor(public navCtrl: NavController, public geolocation: Geolocation,public geocoder: NativeGeocoder, public toaster: ToastController, public localNotifications: LocalNotifications) {
 
   }
 
@@ -38,15 +38,14 @@ export class HomePage {
  
 }
 
-// public getAlarm() {
-//         this.localNotifications.schedule({
-//             title: "Test Title",
-//             text: "Delayed Notification",
-//             sound: 'file://abc4.mp3',
-//             at: new Date(new Date().getTime() + 5 * 1000)
-            
-//         });
-//     }
+
+public getAlarm() {
+        this.localNotifications.schedule({
+            title: "Test Title",
+            text: "Delayed Notification",
+            sound: 'file://abc4.mp3'  
+        });
+    }
  
   loadMap(){
  

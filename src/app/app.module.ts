@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 //import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,6 +34,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     Geolocation,
     NativeGeocoder,
+    LocalNotifications,
     //LocationAccuracy,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
