@@ -55619,7 +55619,8 @@ var HomePage = (function () {
         this.localNotifications.schedule({
             title: "Test Title",
             text: "Delayed Notification",
-            sound: 'file://abc4.mp3'
+            sound: 'file://jingle-bells-sms.mp3',
+            at: new Date(new Date().getTime() + 10000)
         });
     };
     HomePage.prototype.loadMap = function () {
