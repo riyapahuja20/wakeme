@@ -1,37 +1,56 @@
-import { Component } from '@angular/core';
+import { Component,NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import { NavController, NavParams } from 'ionic-angular';
+import { AgmCoreModule } from '@agm/core';
+import { Marker } from './markerInterface';
 
 @Component({
   selector: 'page-list',
+   styles: [`
+    .sebm-google-map-container {
+       height: 300px;
+     }
+  `],
   templateUrl: 'list.html'
 })
+
 export class ListPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  // google maps zoom level
+  zoom: number = 8;
+  // initial center position for the map
+  lat: number = 51.673858;
+  lng: number = 7.815982;
+  
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`)
+        console.log("full array",this.markers);
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
-
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
   }
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
+  
+  mapClicked($event: any) {
+    this.markers.push({
+      lat: $event.coords.lat,
+      lng: $event.coords.lng
     });
   }
-}
+  
+  markers: Marker[] = [
+	  {
+		  lat: 51.673858,
+		  lng: 7.815982,
+		 
+	  },
+	  {
+		  lat: 51.373858,
+		  lng: 7.215982,
+		  
+	  },
+	  {
+		  lat: 51.723858,
+		  lng: 7.895982,
+		 
+	  }
+  ]
+};
+ 
+

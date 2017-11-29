@@ -3,6 +3,7 @@ import { NavController, ToastController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { AgmCoreModule } from '@agm/core';
 
 declare var google;
 
@@ -42,15 +43,15 @@ export class HomePage {
     console.log(err);
   });
 
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((position) => {
-        console.log(position.coords.longitude + ' ' + position.coords.latitude);
-    // data can be a set of coordinates, or an error (if an error occurred).
-    // data.coords.latitude
-    // data.coords.longitude
+    // let watch = this.geolocation.watchPosition();
+    // watch.subscribe((position) => {
+    //     console.log(position.coords.longitude + ' ' + position.coords.latitude);
+    // // data can be a set of coordinates, or an error (if an error occurred).
+    // // data.coords.latitude
+    // // data.coords.longitude
 
     
-    });
+    // });
   // this.getAlarm();
   // let content = "<h4>Information!</h4>";          
  
